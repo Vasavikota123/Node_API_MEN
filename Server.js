@@ -1,5 +1,7 @@
 const express = require("express");
 const playerRoutes = require("./routes/Players");
+const teamRoutes = require("./routes/teams");
+const cors = require('cors'); // Import cors
 const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
@@ -13,10 +15,7 @@ mongoose
     });
   })
   .catch((err) => console.error("Failed to connect", err));
-
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
+  app.use(cors()); // This will allow all origins by default
 
 app.use(express.json());
 
@@ -25,6 +24,5 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-app.use("/api/players", playerRoutes); 
+app.use("/api/players", playerRoutes);
+app.use("/api/teams", teamRoutes);

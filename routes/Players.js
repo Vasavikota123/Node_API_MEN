@@ -1,3 +1,4 @@
+//Defined routes to Create, Delete, fetch and patch player details
 const express = require("express");
 const router = express.Router();
 const Player = require("../models/playerModel");
